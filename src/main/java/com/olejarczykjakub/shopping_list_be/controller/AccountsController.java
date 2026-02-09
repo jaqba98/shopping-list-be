@@ -7,30 +7,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.olejarczykjakub.shopping_list_be.service.AccountsService;
+
 @RestController
 public class AccountsController {
+	private final AccountsService accountsService;
+	
+	public AccountsController(AccountsService accountsService) {
+		this.accountsService = accountsService;
+	}
+	
 	@PostMapping("/accounts")
 	public String createAccount() {
-		return "The account was created!";
+		return accountsService.createAccount();
 	}
 	
 	@GetMapping("/accounts")
 	public String readAccounts() {
-		return "The accounts were readed!";
+		return accountsService.readAccounts();
 	}
 	
 	@GetMapping("/accounts/{accountId}")
 	public String readAccount(@PathVariable Long accountId) {
-		return "The account with id: " + accountId + " was readed!";
+		return accountsService.readAccount(accountId);
 	}
 	
 	@PutMapping("/accounts/{accountId}")
 	public String updateAccount(@PathVariable Long accountId) {
-		return "The account with id: " + accountId + " was updated!";
+		return accountsService.updateAccount(accountId);
 	}
 	
 	@DeleteMapping("/accounts/{accountId}")
 	public String deleteAccount(@PathVariable Long accountId) {
-		return "The account with id: " + accountId + " was deleted!";
+		return accountsService.deleteAccount(accountId);
 	}
 }
