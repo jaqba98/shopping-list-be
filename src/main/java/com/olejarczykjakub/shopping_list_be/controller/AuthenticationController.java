@@ -2,8 +2,10 @@ package com.olejarczykjakub.shopping_list_be.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.olejarczykjakub.shopping_list_be.dto.request.LoginRequestDto;
 import com.olejarczykjakub.shopping_list_be.service.AuthenticationService;
 
 @RestController
@@ -16,8 +18,8 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/login")
-	public String login() {
-		return authenticationService.login();
+	public String login(@RequestBody LoginRequestDto loginRequestDto) {
+		return authenticationService.login(loginRequestDto);
 	}
 	
 	@PostMapping("/logout")
